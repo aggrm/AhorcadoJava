@@ -13,6 +13,7 @@ import javax.swing.JButton;
 /**
  *
  * @author xp
+ * TODO: Poner una imagen cuando esten todas las  letras y mas cosas para que quede más bonito
  */
 public class VentanaAhorcado extends javax.swing.JFrame {
 
