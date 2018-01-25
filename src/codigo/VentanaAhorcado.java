@@ -16,28 +16,72 @@ import javax.swing.JButton;
  */
 public class VentanaAhorcado extends javax.swing.JFrame {
 
+    String palabraOculta = "CETYS";
+    int numerodefallos= 0;
+    
+    
+    
     /**
      * Creates new form VentanaAhorcado
      */
     public VentanaAhorcado() {
         initComponents();
-        //iniciola imagen
+        //inicio las imagenes
         dibujaImagen(0);
+    }
+    private void chequeaLetra (String letra)
+    {
+        letra =  letra.toUpperCase();
+        String palabraConGuiones = jLabel1.getText();
+        boolean acierto= false;
+        for(int i=0; i < palabraOculta.length ();i++)
+        {
+            if (letra.charAt(0)== palabraOculta.charAt(i))
+            {
+                //TODO qutar el guión bajo de la letra correspondiente
+                palabraConGuiones = palabraConGuiones.substring(0, 2*i) 
+                        + letra 
+                        + palabraConGuiones.substring(2*i + 1);
+                
+                acierto = true;
+            }
+        }
+        //actualizo el valor que se muestra en la pantalla con las letras adivinadas
+        jLabel1.setText(palabraConGuiones);
+        if (!acierto)
+        {
+            numerodefallos ++;
+            dibujaImagen(numerodefallos);
+        }
     }
     private void chequeaBoton (JButton _boton)
     {
       _boton.setEnabled(false);
+      chequeaLetra(_boton.getText());
     }
     
-    private void dibujaImagen (int numerosImagenes)
+    private void dibujaImagen (int numeroImagen)
     {
-        URL nombreImagen = getClass().getResource("/Imagenes/ahorcado_0.png");
-        int ancho = jLabel2.getWidth();
-        int alto = jLabel2.getWidth();
+        URL nombreImagen;
+        String nombre = "";
+        switch (numeroImagen)
+        {
+            case 0 : nombre = "/Imagenes/ahorcado_0.png"; break;
+            case 1 : nombre = "/Imagenes/ahorcado_1.png"; break;
+            case 2 : nombre = "/Imagenes/ahorcado_2.png"; break;
+            case 3 : nombre = "/Imagenes/ahorcado_3.png"; break;
+            case 4 : nombre = "/Imagenes/ahorcado_4.png"; break;
+            case 5 : nombre = "/Imagenes/ahorcado_5.png"; break;
+            default: nombre = "/Imagenes/ahorcado_fin.png"; break;
+        }
+        nombreImagen = getClass().getResource(nombre);
+             
+        int ancho = LugarDeFotos.getWidth();
+        int alto = LugarDeFotos.getWidth();
         
         ImageIcon miImagen = new ImageIcon (new ImageIcon(nombreImagen).getImage().getScaledInstance(ancho, alto, Image.SCALE_DEFAULT));
         
-        jLabel2.setIcon(miImagen);
+        LugarDeFotos.setIcon(miImagen);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,35 +93,35 @@ public class VentanaAhorcado extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
-        jButton16 = new javax.swing.JButton();
-        jButton17 = new javax.swing.JButton();
-        jButton18 = new javax.swing.JButton();
-        jButton19 = new javax.swing.JButton();
-        jButton20 = new javax.swing.JButton();
-        jButton21 = new javax.swing.JButton();
-        jButton22 = new javax.swing.JButton();
-        jButton23 = new javax.swing.JButton();
-        jButton24 = new javax.swing.JButton();
-        jButton25 = new javax.swing.JButton();
-        jButton26 = new javax.swing.JButton();
-        jButton27 = new javax.swing.JButton();
-        jButton28 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        botonA = new javax.swing.JButton();
+        botonB = new javax.swing.JButton();
+        botonC = new javax.swing.JButton();
+        botonD = new javax.swing.JButton();
+        botonE = new javax.swing.JButton();
+        botonF = new javax.swing.JButton();
+        botonG = new javax.swing.JButton();
+        botonH = new javax.swing.JButton();
+        botonI = new javax.swing.JButton();
+        botonJ = new javax.swing.JButton();
+        botonK = new javax.swing.JButton();
+        botonL = new javax.swing.JButton();
+        botonM = new javax.swing.JButton();
+        botonN = new javax.swing.JButton();
+        botonU = new javax.swing.JButton();
+        botonV = new javax.swing.JButton();
+        botonW = new javax.swing.JButton();
+        botonComodin = new javax.swing.JButton();
+        botonX = new javax.swing.JButton();
+        botonY = new javax.swing.JButton();
+        botonZ = new javax.swing.JButton();
+        botonÑ = new javax.swing.JButton();
+        botonO = new javax.swing.JButton();
+        botonP = new javax.swing.JButton();
+        botonQ = new javax.swing.JButton();
+        botonR = new javax.swing.JButton();
+        botonS = new javax.swing.JButton();
+        botonT = new javax.swing.JButton();
+        LugarDeFotos = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,310 +129,310 @@ public class VentanaAhorcado extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("_ _ _ _ _");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton1.setText("A");
-        jButton1.setMaximumSize(new java.awt.Dimension(64, 64));
-        jButton1.setMinimumSize(new java.awt.Dimension(64, 64));
-        jButton1.setPreferredSize(new java.awt.Dimension(64, 64));
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonA.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonA.setText("A");
+        botonA.setMaximumSize(new java.awt.Dimension(64, 64));
+        botonA.setMinimumSize(new java.awt.Dimension(64, 64));
+        botonA.setPreferredSize(new java.awt.Dimension(64, 64));
+        botonA.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton1MousePressed(evt);
+                botonAMousePressed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton2.setText("B");
-        jButton2.setMaximumSize(new java.awt.Dimension(64, 64));
-        jButton2.setMinimumSize(new java.awt.Dimension(64, 64));
-        jButton2.setPreferredSize(new java.awt.Dimension(64, 64));
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonB.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonB.setText("B");
+        botonB.setMaximumSize(new java.awt.Dimension(64, 64));
+        botonB.setMinimumSize(new java.awt.Dimension(64, 64));
+        botonB.setPreferredSize(new java.awt.Dimension(64, 64));
+        botonB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton2MousePressed(evt);
+                botonBMousePressed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton3.setText("C");
-        jButton3.setMaximumSize(new java.awt.Dimension(64, 64));
-        jButton3.setMinimumSize(new java.awt.Dimension(64, 64));
-        jButton3.setPreferredSize(new java.awt.Dimension(64, 64));
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonC.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonC.setText("C");
+        botonC.setMaximumSize(new java.awt.Dimension(64, 64));
+        botonC.setMinimumSize(new java.awt.Dimension(64, 64));
+        botonC.setPreferredSize(new java.awt.Dimension(64, 64));
+        botonC.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton3MousePressed(evt);
+                botonCMousePressed(evt);
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton4.setText("D");
-        jButton4.setMaximumSize(new java.awt.Dimension(64, 64));
-        jButton4.setMinimumSize(new java.awt.Dimension(64, 64));
-        jButton4.setPreferredSize(new java.awt.Dimension(64, 64));
-        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonD.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonD.setText("D");
+        botonD.setMaximumSize(new java.awt.Dimension(64, 64));
+        botonD.setMinimumSize(new java.awt.Dimension(64, 64));
+        botonD.setPreferredSize(new java.awt.Dimension(64, 64));
+        botonD.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton4MousePressed(evt);
+                botonDMousePressed(evt);
             }
         });
 
-        jButton5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton5.setText("E");
-        jButton5.setMaximumSize(new java.awt.Dimension(64, 64));
-        jButton5.setMinimumSize(new java.awt.Dimension(64, 64));
-        jButton5.setPreferredSize(new java.awt.Dimension(64, 64));
-        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonE.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonE.setText("E");
+        botonE.setMaximumSize(new java.awt.Dimension(64, 64));
+        botonE.setMinimumSize(new java.awt.Dimension(64, 64));
+        botonE.setPreferredSize(new java.awt.Dimension(64, 64));
+        botonE.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton5MousePressed(evt);
+                botonEMousePressed(evt);
             }
         });
 
-        jButton6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton6.setText("F");
-        jButton6.setMaximumSize(new java.awt.Dimension(64, 64));
-        jButton6.setMinimumSize(new java.awt.Dimension(64, 64));
-        jButton6.setPreferredSize(new java.awt.Dimension(64, 64));
-        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonF.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonF.setText("F");
+        botonF.setMaximumSize(new java.awt.Dimension(64, 64));
+        botonF.setMinimumSize(new java.awt.Dimension(64, 64));
+        botonF.setPreferredSize(new java.awt.Dimension(64, 64));
+        botonF.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton6MousePressed(evt);
+                botonFMousePressed(evt);
             }
         });
 
-        jButton7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton7.setText("G");
-        jButton7.setMaximumSize(new java.awt.Dimension(64, 64));
-        jButton7.setMinimumSize(new java.awt.Dimension(64, 64));
-        jButton7.setPreferredSize(new java.awt.Dimension(64, 64));
-        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonG.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonG.setText("G");
+        botonG.setMaximumSize(new java.awt.Dimension(64, 64));
+        botonG.setMinimumSize(new java.awt.Dimension(64, 64));
+        botonG.setPreferredSize(new java.awt.Dimension(64, 64));
+        botonG.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton7MousePressed(evt);
+                botonGMousePressed(evt);
             }
         });
 
-        jButton8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton8.setText("H");
-        jButton8.setMaximumSize(new java.awt.Dimension(64, 64));
-        jButton8.setMinimumSize(new java.awt.Dimension(64, 64));
-        jButton8.setPreferredSize(new java.awt.Dimension(64, 64));
-        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonH.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonH.setText("H");
+        botonH.setMaximumSize(new java.awt.Dimension(64, 64));
+        botonH.setMinimumSize(new java.awt.Dimension(64, 64));
+        botonH.setPreferredSize(new java.awt.Dimension(64, 64));
+        botonH.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton8MousePressed(evt);
+                botonHMousePressed(evt);
             }
         });
 
-        jButton9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton9.setText("I");
-        jButton9.setMaximumSize(new java.awt.Dimension(64, 64));
-        jButton9.setMinimumSize(new java.awt.Dimension(64, 64));
-        jButton9.setPreferredSize(new java.awt.Dimension(64, 64));
-        jButton9.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonI.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonI.setText("I");
+        botonI.setMaximumSize(new java.awt.Dimension(64, 64));
+        botonI.setMinimumSize(new java.awt.Dimension(64, 64));
+        botonI.setPreferredSize(new java.awt.Dimension(64, 64));
+        botonI.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton9MousePressed(evt);
+                botonIMousePressed(evt);
             }
         });
 
-        jButton10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton10.setText("J");
-        jButton10.setMaximumSize(new java.awt.Dimension(64, 64));
-        jButton10.setMinimumSize(new java.awt.Dimension(64, 64));
-        jButton10.setPreferredSize(new java.awt.Dimension(64, 64));
-        jButton10.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonJ.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonJ.setText("J");
+        botonJ.setMaximumSize(new java.awt.Dimension(64, 64));
+        botonJ.setMinimumSize(new java.awt.Dimension(64, 64));
+        botonJ.setPreferredSize(new java.awt.Dimension(64, 64));
+        botonJ.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton10MousePressed(evt);
+                botonJMousePressed(evt);
             }
         });
 
-        jButton11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton11.setText("K");
-        jButton11.setMaximumSize(new java.awt.Dimension(64, 64));
-        jButton11.setMinimumSize(new java.awt.Dimension(64, 64));
-        jButton11.setPreferredSize(new java.awt.Dimension(64, 64));
-        jButton11.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonK.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonK.setText("K");
+        botonK.setMaximumSize(new java.awt.Dimension(64, 64));
+        botonK.setMinimumSize(new java.awt.Dimension(64, 64));
+        botonK.setPreferredSize(new java.awt.Dimension(64, 64));
+        botonK.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton11MousePressed(evt);
+                botonKMousePressed(evt);
             }
         });
 
-        jButton12.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton12.setText("L");
-        jButton12.setMaximumSize(new java.awt.Dimension(64, 64));
-        jButton12.setMinimumSize(new java.awt.Dimension(64, 64));
-        jButton12.setPreferredSize(new java.awt.Dimension(64, 64));
-        jButton12.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonL.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonL.setText("L");
+        botonL.setMaximumSize(new java.awt.Dimension(64, 64));
+        botonL.setMinimumSize(new java.awt.Dimension(64, 64));
+        botonL.setPreferredSize(new java.awt.Dimension(64, 64));
+        botonL.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton12MousePressed(evt);
+                botonLMousePressed(evt);
             }
         });
 
-        jButton13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton13.setText("M");
-        jButton13.setMaximumSize(new java.awt.Dimension(64, 64));
-        jButton13.setMinimumSize(new java.awt.Dimension(64, 64));
-        jButton13.setPreferredSize(new java.awt.Dimension(64, 64));
-        jButton13.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonM.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonM.setText("M");
+        botonM.setMaximumSize(new java.awt.Dimension(64, 64));
+        botonM.setMinimumSize(new java.awt.Dimension(64, 64));
+        botonM.setPreferredSize(new java.awt.Dimension(64, 64));
+        botonM.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton13MousePressed(evt);
+                botonMMousePressed(evt);
             }
         });
 
-        jButton14.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton14.setText("N");
-        jButton14.setMaximumSize(new java.awt.Dimension(64, 64));
-        jButton14.setMinimumSize(new java.awt.Dimension(64, 64));
-        jButton14.setPreferredSize(new java.awt.Dimension(64, 64));
-        jButton14.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonN.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonN.setText("N");
+        botonN.setMaximumSize(new java.awt.Dimension(64, 64));
+        botonN.setMinimumSize(new java.awt.Dimension(64, 64));
+        botonN.setPreferredSize(new java.awt.Dimension(64, 64));
+        botonN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton14MousePressed(evt);
+                botonNMousePressed(evt);
             }
         });
 
-        jButton15.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton15.setText("U");
-        jButton15.setMaximumSize(new java.awt.Dimension(64, 64));
-        jButton15.setMinimumSize(new java.awt.Dimension(64, 64));
-        jButton15.setPreferredSize(new java.awt.Dimension(64, 64));
-        jButton15.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonU.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonU.setText("U");
+        botonU.setMaximumSize(new java.awt.Dimension(64, 64));
+        botonU.setMinimumSize(new java.awt.Dimension(64, 64));
+        botonU.setPreferredSize(new java.awt.Dimension(64, 64));
+        botonU.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton15MousePressed(evt);
+                botonUMousePressed(evt);
             }
         });
 
-        jButton16.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton16.setText("V");
-        jButton16.setMaximumSize(new java.awt.Dimension(64, 64));
-        jButton16.setMinimumSize(new java.awt.Dimension(64, 64));
-        jButton16.setPreferredSize(new java.awt.Dimension(64, 64));
-        jButton16.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonV.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonV.setText("V");
+        botonV.setMaximumSize(new java.awt.Dimension(64, 64));
+        botonV.setMinimumSize(new java.awt.Dimension(64, 64));
+        botonV.setPreferredSize(new java.awt.Dimension(64, 64));
+        botonV.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton16MousePressed(evt);
+                botonVMousePressed(evt);
             }
         });
 
-        jButton17.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton17.setText("W");
-        jButton17.setMaximumSize(new java.awt.Dimension(64, 64));
-        jButton17.setMinimumSize(new java.awt.Dimension(64, 64));
-        jButton17.setPreferredSize(new java.awt.Dimension(64, 64));
-        jButton17.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonW.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonW.setText("W");
+        botonW.setMaximumSize(new java.awt.Dimension(64, 64));
+        botonW.setMinimumSize(new java.awt.Dimension(64, 64));
+        botonW.setPreferredSize(new java.awt.Dimension(64, 64));
+        botonW.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton17MousePressed(evt);
+                botonWMousePressed(evt);
             }
         });
 
-        jButton18.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton18.setMaximumSize(new java.awt.Dimension(64, 64));
-        jButton18.setMinimumSize(new java.awt.Dimension(64, 64));
-        jButton18.setPreferredSize(new java.awt.Dimension(64, 64));
-        jButton18.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonComodin.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonComodin.setMaximumSize(new java.awt.Dimension(64, 64));
+        botonComodin.setMinimumSize(new java.awt.Dimension(64, 64));
+        botonComodin.setPreferredSize(new java.awt.Dimension(64, 64));
+        botonComodin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton18MousePressed(evt);
+                botonComodinMousePressed(evt);
             }
         });
 
-        jButton19.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton19.setText("X");
-        jButton19.setMaximumSize(new java.awt.Dimension(64, 64));
-        jButton19.setMinimumSize(new java.awt.Dimension(64, 64));
-        jButton19.setPreferredSize(new java.awt.Dimension(64, 64));
-        jButton19.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonX.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonX.setText("X");
+        botonX.setMaximumSize(new java.awt.Dimension(64, 64));
+        botonX.setMinimumSize(new java.awt.Dimension(64, 64));
+        botonX.setPreferredSize(new java.awt.Dimension(64, 64));
+        botonX.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton19MousePressed(evt);
+                botonXMousePressed(evt);
             }
         });
 
-        jButton20.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton20.setText("Y");
-        jButton20.setMaximumSize(new java.awt.Dimension(64, 64));
-        jButton20.setMinimumSize(new java.awt.Dimension(64, 64));
-        jButton20.setPreferredSize(new java.awt.Dimension(64, 64));
-        jButton20.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonY.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonY.setText("Y");
+        botonY.setMaximumSize(new java.awt.Dimension(64, 64));
+        botonY.setMinimumSize(new java.awt.Dimension(64, 64));
+        botonY.setPreferredSize(new java.awt.Dimension(64, 64));
+        botonY.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton20MousePressed(evt);
+                botonYMousePressed(evt);
             }
         });
 
-        jButton21.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton21.setText("Z");
-        jButton21.setMaximumSize(new java.awt.Dimension(64, 64));
-        jButton21.setMinimumSize(new java.awt.Dimension(64, 64));
-        jButton21.setPreferredSize(new java.awt.Dimension(64, 64));
-        jButton21.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonZ.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonZ.setText("Z");
+        botonZ.setMaximumSize(new java.awt.Dimension(64, 64));
+        botonZ.setMinimumSize(new java.awt.Dimension(64, 64));
+        botonZ.setPreferredSize(new java.awt.Dimension(64, 64));
+        botonZ.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton21MousePressed(evt);
+                botonZMousePressed(evt);
             }
         });
 
-        jButton22.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton22.setText("Ñ");
-        jButton22.setMaximumSize(new java.awt.Dimension(64, 64));
-        jButton22.setMinimumSize(new java.awt.Dimension(64, 64));
-        jButton22.setPreferredSize(new java.awt.Dimension(64, 64));
-        jButton22.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonÑ.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonÑ.setText("Ñ");
+        botonÑ.setMaximumSize(new java.awt.Dimension(64, 64));
+        botonÑ.setMinimumSize(new java.awt.Dimension(64, 64));
+        botonÑ.setPreferredSize(new java.awt.Dimension(64, 64));
+        botonÑ.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton22MousePressed(evt);
+                botonÑMousePressed(evt);
             }
         });
 
-        jButton23.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton23.setText("O");
-        jButton23.setMaximumSize(new java.awt.Dimension(64, 64));
-        jButton23.setMinimumSize(new java.awt.Dimension(64, 64));
-        jButton23.setPreferredSize(new java.awt.Dimension(64, 64));
-        jButton23.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonO.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonO.setText("O");
+        botonO.setMaximumSize(new java.awt.Dimension(64, 64));
+        botonO.setMinimumSize(new java.awt.Dimension(64, 64));
+        botonO.setPreferredSize(new java.awt.Dimension(64, 64));
+        botonO.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton23MousePressed(evt);
+                botonOMousePressed(evt);
             }
         });
 
-        jButton24.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton24.setText("P");
-        jButton24.setMaximumSize(new java.awt.Dimension(64, 64));
-        jButton24.setMinimumSize(new java.awt.Dimension(64, 64));
-        jButton24.setPreferredSize(new java.awt.Dimension(64, 64));
-        jButton24.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonP.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonP.setText("P");
+        botonP.setMaximumSize(new java.awt.Dimension(64, 64));
+        botonP.setMinimumSize(new java.awt.Dimension(64, 64));
+        botonP.setPreferredSize(new java.awt.Dimension(64, 64));
+        botonP.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton24MousePressed(evt);
+                botonPMousePressed(evt);
             }
         });
 
-        jButton25.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton25.setText("Q");
-        jButton25.setMaximumSize(new java.awt.Dimension(64, 64));
-        jButton25.setMinimumSize(new java.awt.Dimension(64, 64));
-        jButton25.setPreferredSize(new java.awt.Dimension(64, 64));
-        jButton25.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonQ.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonQ.setText("Q");
+        botonQ.setMaximumSize(new java.awt.Dimension(64, 64));
+        botonQ.setMinimumSize(new java.awt.Dimension(64, 64));
+        botonQ.setPreferredSize(new java.awt.Dimension(64, 64));
+        botonQ.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton25MousePressed(evt);
+                botonQMousePressed(evt);
             }
         });
 
-        jButton26.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton26.setText("R");
-        jButton26.setMaximumSize(new java.awt.Dimension(64, 64));
-        jButton26.setMinimumSize(new java.awt.Dimension(64, 64));
-        jButton26.setPreferredSize(new java.awt.Dimension(64, 64));
-        jButton26.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonR.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonR.setText("R");
+        botonR.setMaximumSize(new java.awt.Dimension(64, 64));
+        botonR.setMinimumSize(new java.awt.Dimension(64, 64));
+        botonR.setPreferredSize(new java.awt.Dimension(64, 64));
+        botonR.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton26MousePressed(evt);
+                botonRMousePressed(evt);
             }
         });
 
-        jButton27.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton27.setText("S");
-        jButton27.setMaximumSize(new java.awt.Dimension(64, 64));
-        jButton27.setMinimumSize(new java.awt.Dimension(64, 64));
-        jButton27.setPreferredSize(new java.awt.Dimension(64, 64));
-        jButton27.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonS.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonS.setText("S");
+        botonS.setMaximumSize(new java.awt.Dimension(64, 64));
+        botonS.setMinimumSize(new java.awt.Dimension(64, 64));
+        botonS.setPreferredSize(new java.awt.Dimension(64, 64));
+        botonS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton27MousePressed(evt);
+                botonSMousePressed(evt);
             }
         });
 
-        jButton28.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton28.setText("T");
-        jButton28.setMaximumSize(new java.awt.Dimension(64, 64));
-        jButton28.setMinimumSize(new java.awt.Dimension(64, 64));
-        jButton28.setPreferredSize(new java.awt.Dimension(64, 64));
-        jButton28.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonT.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonT.setText("T");
+        botonT.setMaximumSize(new java.awt.Dimension(64, 64));
+        botonT.setMinimumSize(new java.awt.Dimension(64, 64));
+        botonT.setPreferredSize(new java.awt.Dimension(64, 64));
+        botonT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton28MousePressed(evt);
+                botonTMousePressed(evt);
             }
         });
 
@@ -403,66 +447,66 @@ public class VentanaAhorcado extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(botonH, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(botonI, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(botonJ, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(botonK, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(botonL, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(botonM, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(botonN, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(botonU, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(botonV, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(botonW, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(botonComodin, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(botonX, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(botonY, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(botonZ, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton22, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(botonÑ, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton23, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(botonO, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton24, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(botonP, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton25, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(botonQ, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton26, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(botonR, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton27, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(botonS, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton28, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(botonT, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(botonA, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(botonB, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(botonC, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(botonD, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(botonE, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(botonF, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(botonG, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LugarDeFotos, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(113, 113, 113))
         );
         layout.setVerticalGroup(
@@ -471,160 +515,160 @@ public class VentanaAhorcado extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LugarDeFotos, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botonA, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonB, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonC, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonD, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonE, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonF, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonG, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botonH, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonI, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonJ, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonK, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonL, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonM, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonN, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton22, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton23, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton24, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton25, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton26, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton27, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton28, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botonÑ, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonO, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonP, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonQ, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonR, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonS, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonT, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botonU, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonV, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonW, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonComodin, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonX, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonY, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonZ, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MousePressed
+    private void botonAMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAMousePressed
         chequeaBoton((JButton)evt.getSource());
-    }//GEN-LAST:event_jButton1MousePressed
+    }//GEN-LAST:event_botonAMousePressed
 
-    private void jButton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MousePressed
+    private void botonBMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBMousePressed
         chequeaBoton((JButton)evt.getSource());
-    }//GEN-LAST:event_jButton2MousePressed
+    }//GEN-LAST:event_botonBMousePressed
 
-    private void jButton3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MousePressed
+    private void botonCMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCMousePressed
         chequeaBoton((JButton)evt.getSource());
-    }//GEN-LAST:event_jButton3MousePressed
+    }//GEN-LAST:event_botonCMousePressed
 
-    private void jButton4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MousePressed
+    private void botonDMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonDMousePressed
         chequeaBoton((JButton)evt.getSource());
-    }//GEN-LAST:event_jButton4MousePressed
+    }//GEN-LAST:event_botonDMousePressed
 
-    private void jButton5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MousePressed
+    private void botonEMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEMousePressed
         chequeaBoton((JButton)evt.getSource());
-    }//GEN-LAST:event_jButton5MousePressed
+    }//GEN-LAST:event_botonEMousePressed
 
-    private void jButton6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MousePressed
+    private void botonFMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonFMousePressed
         chequeaBoton((JButton)evt.getSource());
-    }//GEN-LAST:event_jButton6MousePressed
+    }//GEN-LAST:event_botonFMousePressed
 
-    private void jButton7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MousePressed
+    private void botonGMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGMousePressed
         chequeaBoton((JButton)evt.getSource());
-    }//GEN-LAST:event_jButton7MousePressed
+    }//GEN-LAST:event_botonGMousePressed
 
-    private void jButton8MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MousePressed
+    private void botonHMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonHMousePressed
         chequeaBoton((JButton)evt.getSource());
-    }//GEN-LAST:event_jButton8MousePressed
+    }//GEN-LAST:event_botonHMousePressed
 
-    private void jButton9MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MousePressed
+    private void botonIMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonIMousePressed
         chequeaBoton((JButton)evt.getSource());
-    }//GEN-LAST:event_jButton9MousePressed
+    }//GEN-LAST:event_botonIMousePressed
 
-    private void jButton10MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MousePressed
+    private void botonJMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonJMousePressed
         chequeaBoton((JButton)evt.getSource());
-    }//GEN-LAST:event_jButton10MousePressed
+    }//GEN-LAST:event_botonJMousePressed
 
-    private void jButton11MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MousePressed
+    private void botonKMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonKMousePressed
         chequeaBoton((JButton)evt.getSource());
-    }//GEN-LAST:event_jButton11MousePressed
+    }//GEN-LAST:event_botonKMousePressed
 
-    private void jButton12MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MousePressed
+    private void botonLMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLMousePressed
         chequeaBoton((JButton)evt.getSource());
-    }//GEN-LAST:event_jButton12MousePressed
+    }//GEN-LAST:event_botonLMousePressed
 
-    private void jButton13MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton13MousePressed
+    private void botonMMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonMMousePressed
         chequeaBoton((JButton)evt.getSource());
-    }//GEN-LAST:event_jButton13MousePressed
+    }//GEN-LAST:event_botonMMousePressed
 
-    private void jButton14MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton14MousePressed
+    private void botonNMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonNMousePressed
         chequeaBoton((JButton)evt.getSource());
-    }//GEN-LAST:event_jButton14MousePressed
+    }//GEN-LAST:event_botonNMousePressed
 
-    private void jButton22MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton22MousePressed
+    private void botonÑMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonÑMousePressed
         chequeaBoton((JButton)evt.getSource());
-    }//GEN-LAST:event_jButton22MousePressed
+    }//GEN-LAST:event_botonÑMousePressed
 
-    private void jButton23MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton23MousePressed
+    private void botonOMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonOMousePressed
         chequeaBoton((JButton)evt.getSource());
-    }//GEN-LAST:event_jButton23MousePressed
+    }//GEN-LAST:event_botonOMousePressed
 
-    private void jButton24MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton24MousePressed
+    private void botonPMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonPMousePressed
         chequeaBoton((JButton)evt.getSource());
-    }//GEN-LAST:event_jButton24MousePressed
+    }//GEN-LAST:event_botonPMousePressed
 
-    private void jButton25MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton25MousePressed
+    private void botonQMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonQMousePressed
         chequeaBoton((JButton)evt.getSource());
-    }//GEN-LAST:event_jButton25MousePressed
+    }//GEN-LAST:event_botonQMousePressed
 
-    private void jButton26MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton26MousePressed
+    private void botonRMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRMousePressed
         chequeaBoton((JButton)evt.getSource());
-    }//GEN-LAST:event_jButton26MousePressed
+    }//GEN-LAST:event_botonRMousePressed
 
-    private void jButton27MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton27MousePressed
+    private void botonSMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSMousePressed
         chequeaBoton((JButton)evt.getSource());
-    }//GEN-LAST:event_jButton27MousePressed
+    }//GEN-LAST:event_botonSMousePressed
 
-    private void jButton28MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton28MousePressed
+    private void botonTMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonTMousePressed
         chequeaBoton((JButton)evt.getSource());
-    }//GEN-LAST:event_jButton28MousePressed
+    }//GEN-LAST:event_botonTMousePressed
 
-    private void jButton15MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton15MousePressed
+    private void botonUMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonUMousePressed
         chequeaBoton((JButton)evt.getSource());
-    }//GEN-LAST:event_jButton15MousePressed
+    }//GEN-LAST:event_botonUMousePressed
 
-    private void jButton16MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton16MousePressed
+    private void botonVMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonVMousePressed
         chequeaBoton((JButton)evt.getSource());
-    }//GEN-LAST:event_jButton16MousePressed
+    }//GEN-LAST:event_botonVMousePressed
 
-    private void jButton17MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton17MousePressed
+    private void botonWMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonWMousePressed
         chequeaBoton((JButton)evt.getSource());
-    }//GEN-LAST:event_jButton17MousePressed
+    }//GEN-LAST:event_botonWMousePressed
 
-    private void jButton18MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton18MousePressed
+    private void botonComodinMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonComodinMousePressed
         chequeaBoton((JButton)evt.getSource());
-    }//GEN-LAST:event_jButton18MousePressed
+    }//GEN-LAST:event_botonComodinMousePressed
 
-    private void jButton19MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton19MousePressed
+    private void botonXMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonXMousePressed
         chequeaBoton((JButton)evt.getSource());
-    }//GEN-LAST:event_jButton19MousePressed
+    }//GEN-LAST:event_botonXMousePressed
 
-    private void jButton20MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton20MousePressed
+    private void botonYMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonYMousePressed
         chequeaBoton((JButton)evt.getSource());
-    }//GEN-LAST:event_jButton20MousePressed
+    }//GEN-LAST:event_botonYMousePressed
 
-    private void jButton21MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton21MousePressed
+    private void botonZMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonZMousePressed
         chequeaBoton((JButton)evt.getSource());
-    }//GEN-LAST:event_jButton21MousePressed
+    }//GEN-LAST:event_botonZMousePressed
 
     
     /**
@@ -663,36 +707,35 @@ public class VentanaAhorcado extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton18;
-    private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton20;
-    private javax.swing.JButton jButton21;
-    private javax.swing.JButton jButton22;
-    private javax.swing.JButton jButton23;
-    private javax.swing.JButton jButton24;
-    private javax.swing.JButton jButton25;
-    private javax.swing.JButton jButton26;
-    private javax.swing.JButton jButton27;
-    private javax.swing.JButton jButton28;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
+    private javax.swing.JLabel LugarDeFotos;
+    private javax.swing.JButton botonA;
+    private javax.swing.JButton botonB;
+    private javax.swing.JButton botonC;
+    private javax.swing.JButton botonComodin;
+    private javax.swing.JButton botonD;
+    private javax.swing.JButton botonE;
+    private javax.swing.JButton botonF;
+    private javax.swing.JButton botonG;
+    private javax.swing.JButton botonH;
+    private javax.swing.JButton botonI;
+    private javax.swing.JButton botonJ;
+    private javax.swing.JButton botonK;
+    private javax.swing.JButton botonL;
+    private javax.swing.JButton botonM;
+    private javax.swing.JButton botonN;
+    private javax.swing.JButton botonO;
+    private javax.swing.JButton botonP;
+    private javax.swing.JButton botonQ;
+    private javax.swing.JButton botonR;
+    private javax.swing.JButton botonS;
+    private javax.swing.JButton botonT;
+    private javax.swing.JButton botonU;
+    private javax.swing.JButton botonV;
+    private javax.swing.JButton botonW;
+    private javax.swing.JButton botonX;
+    private javax.swing.JButton botonY;
+    private javax.swing.JButton botonZ;
+    private javax.swing.JButton botonÑ;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }
